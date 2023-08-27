@@ -1,11 +1,14 @@
 //1. Перевірка пароля
-let parole = '';
+let password = '';
 
-while (parole.length != 8 && parole[0] != Number()) {
-    parole = prompt('Введіть пароль(8 символіт та перший символ - цифра)');
+while (password.length !== 8 && password[0] !== isNaN()) {
+    password = prompt('Введіть пароль(8 символіт та перший символ - цифра)');
+    if (password.length === 8 && password[0] !== isNaN()) {
+        console.log(true)
+    } else {
+        console.log(false)
+    }
 }
-console.log(Boolean(parole));
-
 
 //2. Конвертер валют
 
@@ -13,7 +16,6 @@ console.log(Boolean(parole));
 const uan = prompt('Введіть суму гривень для конвертації');
 const result = uan / rate;
 console.log(`${uan} UAN = ${result.toFixed(2)} USD`);}
-
 
 //3. Обчислення вартості бензину
 
