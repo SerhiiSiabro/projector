@@ -15,9 +15,7 @@ if (isNaN(value)) {
 const currentMaxValue = 4589;
 let reverseMaxValue;
 
-reverseMaxValue = currentMaxValue.toString().split("").reverse().join("").toString();
-reverseMaxValue = parseInt(reverseMaxValue);
-
+reverseMaxValue = parseInt(currentMaxValue.toString().split("").reverse().join(""));
 
 console.log(reverseMaxValue); // 9854
 console.log(typeof reverseMaxValue); // 'number'
@@ -30,7 +28,7 @@ let result = 1;
 
 productOfArray = resultsArray.flat(Infinity);
 console.log(productOfArray)
-for (let index = 1; index < productOfArray.length; index++) {
+for (let index = 0; index < productOfArray.length; index++) {
     result *= productOfArray[index];
 }
 
