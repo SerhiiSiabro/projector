@@ -1,12 +1,14 @@
 //1. Перевірка пароля
-let password = '';
+let password = "";
+// console.log(password.length);
 
-while (password.length !== 8 && password[0] !== isNaN()) {
+while (password.length !== 8) {
     password = prompt('Введіть пароль(8 символіт та перший символ - цифра)');
-    if (password.length === 8 && password[0] !== isNaN()) {
+    if (password.length === 8 && !isNaN(password[0])) {
         console.log(true)
     } else {
         console.log(false)
+        password = "";
     }
 }
 
