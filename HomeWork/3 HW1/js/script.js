@@ -4,7 +4,7 @@ const value = prompt('Введіть цифрове значення');
 
 if (isNaN(value)) {
     console.log('Помилка: введіть число')
-} else if (!isNaN(value)) {
+} else {
     for (let i = 0; i < value; i += 2) {
         console.log(i);
     }
