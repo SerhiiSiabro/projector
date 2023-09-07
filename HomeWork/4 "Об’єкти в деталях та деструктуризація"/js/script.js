@@ -7,6 +7,7 @@ const priceData = {
 
 let updatedPriceData = {};
 
+// ваш код
 let entries = Object.entries(priceData);
 for (let i = 0; i < entries.length; i++) {
   const element = entries[i];
