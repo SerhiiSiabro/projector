@@ -1,11 +1,11 @@
 function iterativeOddSumTo(number) {
-  let unswer = 0;
+  let result = 0;
   for (let i = 1; i <= number; i++) {
     if (i % 2 !== 0) {
-      unswer += i;
+      result += i;
     } 
   }
-  return unswer;
+  return result;
 };
   
 console.log(iterativeOddSumTo(1)) // 1
@@ -18,9 +18,9 @@ function recursiveOddSumTo(number, i = 1) {
   }
   if (i % 2 !== 0) {
     return i + recursiveOddSumTo(number, i + 1)
-  } else {
-    return recursiveOddSumTo(number, i + 1)
   }
+
+  return recursiveOddSumTo(number, i + 1)
 };
   
 console.log(recursiveOddSumTo(1)) // 1
