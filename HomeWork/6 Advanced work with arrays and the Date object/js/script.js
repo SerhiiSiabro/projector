@@ -20,6 +20,18 @@
 //Рішення має працювати незалежно від конкретних значень в масиві імен
 
 const userNamesSecondEx = ['Петро', 'Емма', 'Юстин', 'Ілля', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
-let filteredNames;
+let filteredNames = [];
+
+// 1. через умовну конструкцію всередині методу перебора
+userNamesSecondEx.forEach((element) => {
+    let arrayFerstLetters = 
+    if(element[0] === 'А' || element[0] === 'Е' || element[0] === 'Ю' || element[0] === 'І' || element[0] === 'Я' || element[0] === 'О') {
+        console.log('Here', element[0]);
+        filteredNames.push(element);
+    } 
+});
+
+// 2. через вбудований метод масивів для фільтрації
+// filteredNames = userNamesSecondEx.filter(element => element[0] === 'А' || element[0] === 'Е' || element[0] === 'Ю' || element[0] === 'І' || element[0] === 'Я' || element[0] === 'О');
 
 console.log(filteredNames); // ['Емма', 'Юстин', 'Ілля', 'Яна', 'Антон', 'Олена']

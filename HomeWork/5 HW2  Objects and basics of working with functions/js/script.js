@@ -13,14 +13,16 @@ console.log(iterativeOddSumTo(9)) // 25
 console.log(iterativeOddSumTo(10)) // 25
 
 function recursiveOddSumTo(number, i = 1) {
-  if (i > number) {
+  if (number === 1) {
+    return 1;
+ }
+  if (number < i) {
     return 0;
   }
-  if (i % 2 !== 0) {
-    return i + recursiveOddSumTo(number, i + 1)
+  if (number % 2 !== 0) {
+    return number + recursiveOddSumTo(number -2, i = 1)
   }
-
-  return recursiveOddSumTo(number, i + 1)
+  return recursiveOddSumTo(number - 1)
 };
   
 console.log(recursiveOddSumTo(1)) // 1
