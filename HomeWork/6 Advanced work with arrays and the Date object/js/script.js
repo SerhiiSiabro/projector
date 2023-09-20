@@ -54,19 +54,60 @@
 //Допустимо у вас є об'єкт, у якому кожен ключ - це назва товару (одинм словом), а значення - його ціна.
 //Напишіть функцію яка буде всі ключі переводити у нижній регістр, а всі ціни буде заокруглювати до двох знаків після коми.
 
-// приклад об'єкту
-const priceData = {
-    Apples: '23.4',
-    BANANAS: '48',
-    oRAngGEs: '48.7584',
-    };
+// // приклад об'єкту
+// const priceData = {
+//     Apples: '23.4',
+//     BANANAS: '48',
+//     oRAngGEs: '48.7584',
+//     };
     
-    function optimizer(data) {
-        // тут ваш код
-    };
+//     function optimizer(data) {
+//         const arrayFromEntries = Object.fromEntries(
+//         Object.entries(data).map(([key, value]) => 
+//             [key = key.toLowerCase(), value = Number.parseFloat(value).toFixed(2)]),)
+//         return arrayFromEntries;
+//     };
     
-    let updatedPriceData = optimizer(priceData);
+//     let updatedPriceData = optimizer(priceData);
     
-    console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
+//     console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
 
-//Для рішення задачі необхідно використовувати методи масивів та Object.entries/Object.fromEnties методи
+// //Для рішення задачі необхідно використовувати методи масивів та Object.entries/Object.fromEnties методи
+
+
+
+//5. Задача про обчислення різниці часу
+
+//Напишіть функцію яка буде буде приймати 3 параметри
+//— початкову дату (string)
+//— кінцеву дату (string)
+//— розмірність ('days',  'hours', 'minutes', seconds)
+//Функція повертатиме часовий період між цими датами згідно розмірності.
+//Також вкажіть значення по замовчуванню для всіх цих параметрів (на ваш вибір).
+//Функція має коректно працювати навіть якщо початкова дата пізніше ніж кінцева дата.
+
+function durationBetweenDates(firstDate = Date.now(), secondDate = Date.now(), dimension = 'days') {
+    let difference;
+    if ( new Date(secondDate) > new Date(firstDate)) {
+        difference = new Date(secondDate) - new Date(firstDate);
+    } else {
+        difference = new Date(firstDate) - new Date(secondDate);
+    }
+    
+    if (dimension === 'seconds') {
+        return `${difference / 1000} seconds`
+    }
+    if (dimension === 'minutes') {
+        return `${difference / (1000 * 60)} minutes`
+    }
+    if (dimension === 'hours') {
+        return `${difference / (1000 * 60 * 60)} hours`
+    }
+    if (dimension === 'days') {
+        return `${difference / (1000 * 60 * 60 * 24)} days`
+    }
+}
+console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds')); // поверне '86400 seconds'
+console.log(durationBetweenDates('31 Jan 2022', '03 Feb 2021', 'days')); // поверне '362 days'
+console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'minutes'));
+console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'hours'));
