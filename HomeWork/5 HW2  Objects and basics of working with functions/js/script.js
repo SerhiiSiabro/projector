@@ -15,9 +15,6 @@ console.log(iterativeOddSumTo(10)) // 25
 function recursiveOddSumTo(number) {
   if (number === 1) {
     return 1;
- }
-  if (number < 1) {
-    return 0;
   }
   if (number % 2 !== 0) {
     return number + recursiveOddSumTo(number -2)
