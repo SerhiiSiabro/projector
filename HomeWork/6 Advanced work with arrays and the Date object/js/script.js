@@ -13,11 +13,11 @@
 // console.log(initials); // [ "Г.П.А.", "П.О.І.", "Р.А.О."]
 
 
-//2. Задача на фільтрування масиву
-//Реалізуйте фільтрування імен які починаються з голосної двома способами:
+// 2. Задача на фільтрування масиву
+// Реалізуйте фільтрування імен які починаються з голосної двома способами:
 // 1. через умовну конструкцію всередині методу перебора
 // 2. через вбудований метод масивів для фільтрації
-//Рішення має працювати незалежно від конкретних значень в масиві імен
+// Рішення має працювати незалежно від конкретних значень в масиві імен
 
 // const userNamesSecondEx = ['Петро', 'Емма', 'Юстин', 'Ілля', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
 // let filteredNames = [];
@@ -25,7 +25,7 @@
 
 // // 1. через умовну конструкцію всередині методу перебора
 // userNamesSecondEx.forEach((element) => {
-//     if(vowelLetters.includes(element[0], 0)) {
+//     if(vowelLetters.includes(element[0])) {
 //         console.log('Here', element[0]);
 //         filteredNames.push(element);
 //     } 
@@ -54,7 +54,7 @@
 //Допустимо у вас є об'єкт, у якому кожен ключ - це назва товару (одинм словом), а значення - його ціна.
 //Напишіть функцію яка буде всі ключі переводити у нижній регістр, а всі ціни буде заокруглювати до двох знаків після коми.
 
-// // приклад об'єкту
+// приклад об'єкту
 // const priceData = {
 //     Apples: '23.4',
 //     BANANAS: '48',
@@ -62,17 +62,17 @@
 //     };
     
 //     function optimizer(data) {
-//         const arrayFromEntries = Object.fromEntries(
+//         return Object.fromEntries(
 //         Object.entries(data).map(([key, value]) => 
-//             [key = key.toLowerCase(), value = Number.parseFloat(value).toFixed(2)]),)
-//         return arrayFromEntries;
+//             [key = key.toLowerCase(), value = Number.parseFloat(value).toFixed(2)]),
+//         )
 //     };
     
 //     let updatedPriceData = optimizer(priceData);
     
 //     console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
 
-// //Для рішення задачі необхідно використовувати методи масивів та Object.entries/Object.fromEnties методи
+//Для рішення задачі необхідно використовувати методи масивів та Object.entries/Object.fromEnties методи
 
 
 
@@ -86,25 +86,21 @@
 //Також вкажіть значення по замовчуванню для всіх цих параметрів (на ваш вибір).
 //Функція має коректно працювати навіть якщо початкова дата пізніше ніж кінцева дата.
 
-function durationBetweenDates(firstDate = Date.now(), secondDate = Date.now(), dimension = 'days') {
-    let difference;
-    if ( new Date(secondDate) > new Date(firstDate)) {
-        difference = new Date(secondDate) - new Date(firstDate);
-    } else {
-        difference = new Date(firstDate) - new Date(secondDate);
-    }
+function durationBetweenDates(startDate = Date.now(), endDate = Date.now(), dimension = 'days') {
+
+    let difference = Math.abs(new Date(endDate) - new Date(startDate));
     
-    if (dimension === 'seconds') {
-        return `${difference / 1000} seconds`
-    }
-    if (dimension === 'minutes') {
-        return `${difference / (1000 * 60)} minutes`
-    }
-    if (dimension === 'hours') {
-        return `${difference / (1000 * 60 * 60)} hours`
-    }
-    if (dimension === 'days') {
-        return `${difference / (1000 * 60 * 60 * 24)} days`
+    switch(dimension) {
+        case 'seconds':
+            return `${difference / 1000} ${dimension}`;
+        case 'minutes':
+            return `${difference / (1000 * 60)} ${dimension}`;
+        case 'hours':
+            return `${difference / (1000 * 60 * 60)} ${dimension}`;
+        case 'days':
+            return `${difference / (1000 * 60 * 60 * 24)} ${dimension}`;
+        default:
+            console.log(`Sorry, we cant find ${dimension}`);
     }
 }
 console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds')); // поверне '86400 seconds'
