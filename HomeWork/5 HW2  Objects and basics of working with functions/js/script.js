@@ -12,15 +12,12 @@ console.log(iterativeOddSumTo(1)) // 1
 console.log(iterativeOddSumTo(9)) // 25
 console.log(iterativeOddSumTo(10)) // 25
 
-function recursiveOddSumTo(number, i = 1) {
+function recursiveOddSumTo(number) {
   if (number === 1) {
     return 1;
- }
-  if (number < i) {
-    return 0;
   }
   if (number % 2 !== 0) {
-    return number + recursiveOddSumTo(number -2, i = 1)
+    return number + recursiveOddSumTo(number -2)
   }
   return recursiveOddSumTo(number - 1)
 };
