@@ -2,11 +2,9 @@ console.log(addThemAll(2,4)); // 6
 console.log(addThemAll(1,2,3,4)); // 10
 console.log(addThemAll(5,5,10)); // 20
 
-function addThemAll ( ...args ) {
+function addThemAll(...args) {
     let result = 0;
-    for (let index = 0; index < args.length; index++) {
-        result += args[index];
-    }
+    args.reduce((result, currentValue) => result + currentValue);
     return result;
 }
 
