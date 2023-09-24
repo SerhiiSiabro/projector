@@ -12,7 +12,8 @@
 //   let timer = setInterval(() => {
 //     if (delay < 1) {
 //       console.log("Boom");
-//       return clearInterval(timer);
+//       clearInterval(timer);
+//       return;
 //     }
 //     console.log(delay);
 //     delay -= 1;
@@ -21,23 +22,23 @@
 
 //2:
 
-// detonatorTimer(3);
-// // 3
-// // 2
-// // 1
-// // BOOM!
+detonatorTimer(3);
+// 3
+// 2
+// 1
+// BOOM!
 
-// function detonatorTimer(delay) {
-//   let timerId = setTimeout(function tick() {
-//     if (delay < 1) {
-//       console.log("Boom");
-//       return clearTimeout(timerId);
-//     }
-//     console.log(delay);
-//     delay -= 1;
-//     timerId = setTimeout(tick, 1000);
-//   }, 1000);
-// }
+function detonatorTimer(delay) {
+  let timerId = setTimeout(function tick() {
+    if (delay < 1) {
+      console.log("Boom");
+      return;
+    }
+    console.log(delay);
+    delay -= 1;
+    timerId = setTimeout(tick, 1000);
+  }, 6000);
+}
 
 //3:
 function yearNow() {
