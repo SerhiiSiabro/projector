@@ -12,8 +12,8 @@ const userNames = [
 ];
 
 function filterUnique(array) {
-  let filtredArray = new Set(array);
-  return [...filtredArray];
+  let filtredSet = new Set(array);
+  return [...filtredSet];
 }
 
 console.log(filterUnique(userNames)); // ['Петро', 'Емма', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
