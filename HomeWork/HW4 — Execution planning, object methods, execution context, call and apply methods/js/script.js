@@ -42,3 +42,26 @@ function byProperty(property, direction) {
       break;
   }
 }
+
+/////
+
+function someFunction(x, y) {
+  console.log(x + y);
+}
+
+function slower(func, seconds) {
+  return function (...args) {
+    console.log("Chill out, you will get your result in 5 seconds");
+    let result = window.setTimeout(function () {
+      func(...args);
+    }, seconds * 1000);
+    return result;
+  };
+}
+
+let slowedSomeFunction = slower(someFunction, 5); // обгортаєте свою довільну функцію 'someFunction' в декоратор і задає значення вповільнення
+
+slowedSomeFunction(4, 9); // викликаєте декоратор
+
+// виведе в консоль "Chill out, you will get you result in 5 seconds
+//...через 5 секунд виведе результат роботи 'someFunction'
