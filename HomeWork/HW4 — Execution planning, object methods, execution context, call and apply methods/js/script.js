@@ -52,10 +52,9 @@ function someFunction(x, y) {
 function slower(func, seconds) {
   return function (...args) {
     console.log("Chill out, you will get your result in 5 seconds");
-    let result = window.setTimeout(function () {
+    return setTimeout(function () {
       func(...args);
     }, seconds * 1000);
-    return result;
   };
 }
 
