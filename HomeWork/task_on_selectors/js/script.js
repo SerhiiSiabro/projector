@@ -1,13 +1,12 @@
 let headerTwo = document.getElementById("headerTwo");
 console.log(headerTwo);
 
-let elements = document.getElementsByClassName("firstSection");
+let elements = document.getElementsByTagName("section");
 let firstgElementFirstSection = elements[0].firstElementChild;
 console.log(firstgElementFirstSection);
 
-let list = document.querySelector("ul");
-let elementWithOptionFive = list.lastElementChild.previousElementSibling;
+let elementWithOptionFive = document.querySelector("li:nth-child(5)");
 console.log(elementWithOptionFive);
 
-let hatredLevelBlock = document.querySelectorAll(".hatredLevelBlock");
+let hatredLevelBlock = document.querySelectorAll(".hatredLevelBlock")[0];
 console.log(hatredLevelBlock);
