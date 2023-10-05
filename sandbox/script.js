@@ -1,13 +1,12 @@
-"use strict"
+"use strict";
 
+const buttonLight = document.getElementById("buttonLight");
+const buttonDark = document.getElementById("buttonDark");
 
-function createIntersectionArrays(ferstArr, secondArr){
-    const arr = new Set(ferstArr);
-    const arr2 = new Set(secondArr);
-    const result = arr2.filter(item => arr.has(item));
-    console.log(result);
-}
-createIntersectionArrays([1, 2, 3, 4], [3, 4, 5, 6]); 
+buttonLight.addEventListener("click", () => {
+  document.body.style.backgroundColor = "white";
+});
 
-
-// повинно повертати [3, 4]
+buttonDark.addEventListener("click", () => {
+  document.body.style.backgroundColor = "darkblue";
+});
