@@ -1,13 +1,22 @@
 "use strict";
 
 const button = document.querySelector(".button");
-const backgroundCollar = document.querySelector(".wrapper");
-console.log(backgroundCollar);
+const wrapper = document.querySelector(".wrapper");
 
-button.addEventListener("click", (event) => {
-  button.textContent === "Turn off"
-    ? (button.textContent = "Turn on")
-    : (button.textContent = "Turn off");
-  //   if ((button.textContent = "Turn off")) {
-  //   }
+function turnOn() {
+  return (button.textContent = "Turn on");
+}
+
+function turnOff() {
+  return (button.textContent = "Turn off");
+}
+
+button.addEventListener("click", function () {
+  if (button.textContent === "Turn off") {
+    turnOn();
+    wrapper.classList.toggle("wrapper-black");
+  } else if (button.textContent === "Turn on") {
+    turnOff();
+    wrapper.classList.toggle("wrapper-black");
+  }
 });
