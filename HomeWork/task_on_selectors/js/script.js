@@ -8,5 +8,5 @@ console.log(firstgElementFirstSection);
 let elementWithOptionFive = document.querySelector("li:nth-child(5)");
 console.log(elementWithOptionFive);
 
-let hatredLevelBlock = document.querySelectorAll(".hatredLevelBlock")[0];
+let hatredLevelBlock = document.getElementsByClassName("hatredLevelBlock")[0];
 console.log(hatredLevelBlock);
