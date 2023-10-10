@@ -8,39 +8,32 @@ button.addEventListener("click", function () {
   const timeNow = new Date();
   infoClick.style.display = "block";
   if (button.textContent === "Turn off") {
-    turnOn();
-    wrapper.classList.toggle("wrapper-black");
-
-    infoClick.textContent = `Last turn off: ${formatDate(timeNow)}`;
-
+    turnOn(timeNow);
     setInfo();
   } else if (button.textContent === "Turn on") {
-    turnOff();
-    wrapper.classList.toggle("wrapper-black");
-
-    infoClick.textContent = `Last turn on: ${formatDate(timeNow)}`;
-
+    turnOff(timeNow);
     setInfo();
   }
 });
 
-if (localStorage.getItem("collorWrapper")) {
-  const storedTime = JSON.parse(localStorage.getItem("time"));
-  const storedButtonText = JSON.parse(localStorage.getItem("buttonText"));
-  const storedCollorWrapper = JSON.parse(localStorage.getItem("collorWrapper"));
-
-  button.textContent = storedButtonText;
+if (localStorage.getItem("pageSettings")) {
+  const pageSettings = JSON.parse(localStorage.getItem("pageSettings"));
+  button.textContent = pageSettings.buttonText;
   infoClick.style.display = "block";
-  infoClick.textContent = storedTime;
-  wrapper.classList.toggle("wrapper-black", storedCollorWrapper);
+  infoClick.textContent = pageSettings.time;
+  wrapper.classList.toggle("wrapper-black", pageSettings.collorWrapper);
 }
 
-function turnOn() {
-  return (button.textContent = "Turn on");
+function turnOn(timeNow) {
+  button.textContent = "Turn on";
+  wrapper.classList.toggle("wrapper-black");
+  infoClick.textContent = `Last turn off: ${formatDate(timeNow)}`;
 }
 
-function turnOff() {
-  return (button.textContent = "Turn off");
+function turnOff(timeNow) {
+  button.textContent = "Turn off";
+  wrapper.classList.toggle("wrapper-black");
+  infoClick.textContent = `Last turn on: ${formatDate(timeNow)}`;
 }
 
 function padTo2Digits(num) {
@@ -64,10 +57,10 @@ function formatDate(date) {
 }
 
 function setInfo() {
-  localStorage.setItem("time", JSON.stringify(infoClick.textContent));
-  localStorage.setItem("buttonText", JSON.stringify(button.textContent));
-  localStorage.setItem(
-    "collorWrapper",
-    JSON.stringify(wrapper.classList.contains("wrapper-black"))
-  );
+  const pageSettings = {
+    time: infoClick.textContent,
+    buttonText: button.textContent,
+    collorWrapper: wrapper.classList.contains("wrapper-black"),
+  };
+  localStorage.setItem("pageSettings", JSON.stringify(pageSettings));
 }
