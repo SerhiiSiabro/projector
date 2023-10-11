@@ -1,1 +1,1 @@
-const input = document;
+
