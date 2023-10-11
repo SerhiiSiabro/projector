@@ -5,39 +5,35 @@ class Vehicle {
     this.wheel = wheel;
     this.lastService = lastService;
   }
-  annualService() {
+  getAnnualService() {
     console.log(`Last service was done in ${this.lastService}`);
   }
 }
 
 class Car extends Vehicle {
-  #brend = "Audi";
+  #wheels = 4;
   constructor(model, year, wheel, lastService, fuelConsumption, typeOfDrive) {
     super(model, year, wheel, lastService);
     this.fuelConsumption = fuelConsumption;
     this.typeOfDrive = typeOfDrive;
   }
-  enginInfo() {
+  getEnginInfo() {
     console.log(
-      `this ${this.#brend} has last service in ${
-        this.lastService
-      }. Fuel consumption is ${this.fuelConsumption}`
+      `this ${this.model} car has last service in ${this.lastService}. Fuel consumption is ${this.fuelConsumption}`
     );
   }
 }
 
 class Bicycle extends Vehicle {
-  #brend = "Camanche";
+  #wheels = 2;
   constructor(model, year, wheel, lastService, handlebar, frame) {
     super(model, year, wheel, lastService);
     this.handlebar = handlebar;
     this.frame = frame;
   }
-  introduse() {
+  getIntroduseInfo() {
     console.log(
-      `This ${this.#brend} model has ${this.frame} frame and include ${
-        this.handlebar
-      } handlebar`
+      `This ${this.model} bicycle has ${this.frame} frame and include ${this.handlebar} handlebar`
     );
   }
 }
@@ -63,8 +59,8 @@ const bicycle2 = new Bicycle(
 );
 
 console.log(vehicle);
-vehicle.annualService();
+vehicle.getAnnualService();
 console.log(car1);
-car2.enginInfo();
+car2.getEnginInfo();
 console.log(bicycle1);
-bicycle2.introduse();
+bicycle2.getIntroduseInfo();
