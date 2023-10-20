@@ -7,10 +7,8 @@ const filteredInput = document.querySelector(".filter-input");
 const taskList = document.querySelector(".collection");
 const button = document.querySelector(".clear-tasks");
 
-// "storage" functions
 const STORAGE_KEY = "taskStorage";
 
-// Завжди повертає масив
 const getTasksFromStorage = () => {
   const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
   return tasks;
@@ -31,11 +29,6 @@ const removeTaskFromLocalStorage = (deletedTask) => {
   const tasks = getTasksFromStorage();
 
   // Видалення елементу з масиву
-  // 1 - filter
-  // const filteredTasks = tasks.filter((task) => task !== deletedTask);
-  // localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredTasks));
-
-  // 2 - findIndex + splice
   const index = tasks.findIndex((task) => task === deletedTask);
   tasks.splice(index, 1);
 
@@ -47,7 +40,6 @@ const addTask = (event) => {
   event.preventDefault();
   const value = taskInput.value.trim();
 
-  // Пусте значення або пробіли - не додаємо LI
   if (value === "") {
     alert("Неккоректне значення");
     return;
@@ -102,34 +94,23 @@ const removeTask = (event) => {
 };
 
 const editTask = (event) => {
-  const message = event.target.closest("li");
-  const text = message.firstChild.textContent;
-  const usersText = prompt("Оновіть це завдання", message.textContent);
+  const isEditedIcon = event.target.classList.contains("fa-edit")
 
-  if (usersText === message.textContent || usersText === null) {
-    return;
-  } else {
-    // find index and set
-    const tasks = getTasksFromStorage();
-    const index = tasks.findIndex((task) => task === text);
-    tasks.splice(index, 1, usersText);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  if (isEditedIcon) {
+    const message = event.target.closest("li");
+    const text = message.firstChild.index;
+    const usersText = prompt("Оновіть це завдання", message.textContent);
 
-    const newLi = document.createElement("li");
-    newLi.className = "collection-item";
-    newLi.textContent = usersText; // значення від користувача
+    if (usersText === message.textContent || usersText === null) {
+      return;
+    } else {
+      const tasks = getTasksFromStorage();
+      const index = tasks.findIndex((task) => task === text);
 
-    const span = document.createElement("span");
-    span.className = "delete-item";
-    span.innerHTML = '<i class="fa fa-remove"></i>';
-    newLi.append(span);
-
-    const spanEdit = document.createElement("span");
-    spanEdit.className = "edit-item";
-    spanEdit.innerHTML = '<i class="fa fa-edit"></i>';
-    newLi.append(spanEdit);
-
-    message.replaceWith(newLi);
+      tasks.splice(index, 1, usersText);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      message.firstChild.textContent = usersText;
+    }
   }
 };
 
@@ -188,14 +169,3 @@ taskList.addEventListener("click", editTask);
 
 filteredInput.addEventListener("input", filterTasks);
 
-///
-// const index = ;
-// message.remove();
-// const text = message.firstChild.textContent;
-
-// tasks.splice(index, 1);
-
-// console.log(message.findIndex);
-// removeTaskFromLocalStorage(text);
-// createLi(usersText);
-// setTaskToStorage(usersText);
