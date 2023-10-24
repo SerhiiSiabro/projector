@@ -129,6 +129,7 @@ const filterTasks = (event) => {
   list.forEach((li) => {
     const liText = li.firstChild.textContent.toLowerCase();
 
+
     li.hidden = !liText.includes(searchText);
   });
 };

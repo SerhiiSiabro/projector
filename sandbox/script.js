@@ -1,3 +1,4 @@
+
 "use strict";
 
 // DOM змінні
@@ -96,3 +97,4 @@ bookList.addEventListener("click", (event) => {
 
   ui.showAlert("Книгу видалено!", "success", 1500);
 });
+
