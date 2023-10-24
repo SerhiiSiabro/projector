@@ -29,8 +29,9 @@ const removeTaskFromLocalStorage = (deletedTask) => {
   const tasks = getTasksFromStorage();
 
   // Видалення елементу з масиву
-  const index = tasks.findIndex((task) => task === deletedTask);
-  tasks.splice(index, 1);
+  // const index = tasks.findIndex((task) => task === deletedTask);
+  // console.log(index);
+  tasks.splice(deletedTask, 1);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 };
@@ -85,29 +86,36 @@ const removeTask = (event) => {
 
     if (isApproved) {
       const deletedLi = event.target.closest("li");
+      const indexDeletedItem = Array.prototype.indexOf.call(
+        taskList.childNodes,
+        deletedLi
+      );
+      console.log(indexDeletedItem);
       deletedLi.remove();
 
-      const text = deletedLi.firstChild.textContent;
-      removeTaskFromLocalStorage(text);
+      removeTaskFromLocalStorage(indexDeletedItem);
     }
   }
 };
 
 const editTask = (event) => {
-  const isEditedIcon = event.target.classList.contains("fa-edit")
+  const isEditedIcon = event.target.classList.contains("fa-edit");
 
   if (isEditedIcon) {
     const message = event.target.closest("li");
-    const text = message.firstChild.index;
+    const text = message.firstChild;
     const usersText = prompt("Оновіть це завдання", message.textContent);
 
     if (usersText === message.textContent || usersText === null) {
       return;
     } else {
       const tasks = getTasksFromStorage();
-      const index = tasks.findIndex((task) => task === text);
+      const indexEditedIcon = Array.prototype.indexOf.call(
+        taskList.childNodes,
+        message
+      );
 
-      tasks.splice(index, 1, usersText);
+      tasks.splice(indexEditedIcon, 1, usersText);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
       message.firstChild.textContent = usersText;
     }
@@ -120,12 +128,6 @@ const filterTasks = (event) => {
 
   list.forEach((li) => {
     const liText = li.firstChild.textContent.toLowerCase();
-
-    // if (liText.includes(searchText)) {
-    //   li.hidden = false;
-    // } else {
-    //   li.hidden = true;
-    // }
 
     li.hidden = !liText.includes(searchText);
   });
@@ -168,4 +170,3 @@ taskList.addEventListener("click", removeTask);
 taskList.addEventListener("click", editTask);
 
 filteredInput.addEventListener("input", filterTasks);
-

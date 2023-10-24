@@ -12,3 +12,68 @@
 .error {
   background-color: red;
 }
+
+.container {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.create-task-block {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: rgb(192, 225, 255);
+}
+.create-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.task-title {
+  text-align: center;
+  margin: 0;
+}
+.input-field {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.input-field input {
+  width: auto;
+  justify-content: stretch;
+}
+
+.filter-task-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 251, 219);
+}
+.collection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+.collection-item {
+  display: block;
+  margin: 0;
+}
+.collection-item:has(.fa-remove:hover) {
+  background-color: rgb(255, 0, 0);
+}
+.collection-item:has(.edit-item:hover) {
+  background-color: yellow;
+}
+.fa-remove {
+  margin-left: 10px;
+}
+
+.edit-item {
+  margin-left: 10px;
+}
