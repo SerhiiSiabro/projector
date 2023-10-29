@@ -25,13 +25,13 @@ const clearStorage = () => {
   localStorage.removeItem(STORAGE_KEY);
 };
 
-const removeTaskFromLocalStorage = (deletedTask) => {
+const removeTaskFromLocalStorage = (deletedTaskIndex) => {
   const tasks = getTasksFromStorage();
 
   // Видалення елементу з масиву
   // const index = tasks.findIndex((task) => task === deletedTask);
   // console.log(index);
-  tasks.splice(deletedTask, 1);
+  tasks.splice(deletedTaskIndex, 1);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 };
@@ -110,10 +110,7 @@ const editTask = (event) => {
       return;
     } else {
       const tasks = getTasksFromStorage();
-      const indexEditedIcon = Array.prototype.indexOf.call(
-        taskList.childNodes,
-        message
-      );
+      const indexEditedIcon = [...taskList.childNodes].indexOf(message);
 
       tasks.splice(indexEditedIcon, 1, usersText);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
@@ -128,7 +125,6 @@ const filterTasks = (event) => {
 
   list.forEach((li) => {
     const liText = li.firstChild.textContent.toLowerCase();
-
 
     li.hidden = !liText.includes(searchText);
   });
